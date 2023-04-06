@@ -112,7 +112,6 @@ if (token) {
 
 if(!token) {
     // Elements du DOM à faire apparaitre au login/retirer du DOM au logout
-    const btnAll = document.querySelector('.allCategories');
     const banner = document.querySelector('.banner');
     const contentProfil = document.querySelector('.content-profil');
     const contentIntro = document.querySelector('.content-intro');
@@ -127,7 +126,6 @@ if(!token) {
     contentProfil.style.display = CLASS_NONE;
     contentPortfolio.style.display = CLASS_NONE;
     categories.style.visibility = 'visible';
-    btnAll.style.display = CLASS_NONE;
 }
 
 // Event pour se déconnecter
