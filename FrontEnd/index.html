@@ -35,6 +35,33 @@
 			<button class="btnAdd-photo">Ajouter une photo</button>
 			<p class="edit-delete">Supprimer la galerie</p>
 		</div>
+		<!-- Modale Ajout de projets -->
+		<div class="modale-add">
+			<div class="icon-container-modale-add">
+				<i class="fa-solid fa-arrow-left"></i>
+				<i class="fa-solid fa-xmark close-modale-add"></i>
+			</div>
+			<h2 class="title-modale-add">Ajout photo</h2>
+			<form class="form">
+				<div class="container-add-photo">
+					<i class="fa-regular fa-image icon-modale-add"></i>
+					<img class="img-add" /> <div>
+						<label class="input-file-container" for="image">+ Ajouter photo</label>
+						<input class="inputAdd-photo" type="file" id="image">
+					</div>
+					<p class="text-modale-add">jpg, png : 4mo max</p>
+				</div>
+				<div></div>
+				<label class="title-label">Titre</label>
+				<input class="inputTitle-add" type="text" />
+				<label class="menu-label" for="categories">Catégorie</label>
+				<select class="select-category" name="categories" id="categories">
+					<option value=""></option>
+				</select>
+				<div class="edit-line"></div>
+				<input class="btnAdd-validate" type="submit" value="Valider">
+			</form>
+		</div>
 	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>

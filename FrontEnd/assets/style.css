@@ -195,6 +195,114 @@ body {
 	top: 680px;
 	cursor: pointer;
 }
+/** Modale Add Project **/
+.modale-add {
+	background: #FFF;
+	width: 600px;
+	height: 640px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.icon-container-modale-add {
+	width: 90%;
+	margin: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.title-modale-add {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+	color: #000000;
+	margin: 20px 0 30px;
+}
+.form {
+	display: flex;
+    flex-direction: column
+}
+.icon-modale-add {
+	font-size: 50px;
+	color: #B9C5CC;
+}
+.container-add-photo {
+	width: 420px;
+	height: 169px;
+	background: #E8F1F7;
+	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	margin-bottom: 20px;
+}
+.img-add {
+	display: none;
+	width: 150px;
+	height: 170px;
+	object-fit: cover;
+}
+.title-add-image, .content-add-image {
+	font-family: 'Work Sans';
+	text-align: center;
+}
+.input-file-container {
+	background: #CBD6DC;
+	color: #306685;
+	font-style: weight;
+	font-size: 14px;
+	border-radius: 50px;
+	width: 150px;
+	padding: 10px 25px;
+}
+.text-modale-add {
+	color: #444;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 400;
+}
+.inputAdd-photo {
+	display: none;
+}
+.title-label, .menu-label {
+	margin: 10px 0;
+	cursor: pointer;
+}
+.inputTitle-add, .select-category {
+	height: 45px;
+	color: #6C6C6C;
+	padding: 0 5px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+}
+.inputTitle-add {
+	width: 410px;
+}
+.select-category {
+	width: 100%;
+}
+.edit-line {
+	border: 1px solid #b7b7b7;
+	width: 100%;
+	margin: 35px 0 25px;
+}
+.btnAdd-validate[type="submit"] {
+	background: #A7A7A7;
+	border-radius: 60px;
+	border: none;
+	color: #fff;
+	width: 235px;
+	padding: 10px 50px;
+	margin: 10px auto;
+	cursor: pointer;
+}
 /****************************/
 header {
 	display: flex;
