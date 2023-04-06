@@ -84,6 +84,117 @@ body {
 	padding: 5px 15px;
 	cursor: pointer;
 }
+/*** Partie Modale ***/
+.modale {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 1;
+}
+.modale-container {
+	background-color: white;
+	border-radius: 10px;
+	width: 630px;
+	height: 700px;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	position: sticky;
+}
+.icon-container {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+.fa-xmark{
+	font-size: 20px;
+	cursor: pointer;
+}
+.modale-container h2 {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+	color: #000000;
+	margin: 20px 0 40px;
+}
+/** Gallery Modale **/
+.gallery-modale {
+	display: flex;
+	flex-wrap: wrap;
+	width: 80%;
+}
+.gallery-modale figure {
+	position: relative;
+}
+.gallery-modale img {
+	width: 78px;
+	height: 104px;
+	margin-right: 5px;
+}
+.move, .delete {
+	background: #000;
+	width: 20px;
+	height: 20px;
+	border-radius: 2px;
+	position: absolute;
+}
+.move {
+	top: 9px;
+	left: 27px;
+}
+.delete {
+	top: 9px;
+	left: 52px;
+}
+.icon-arrow, .icon-trash {
+	cursor: pointer;
+	color: #fff;
+	font-size: 13px;
+	position: absolute;
+}
+.icon-arrow {
+	top: 4px;
+	left: 3px;
+}
+.icon-trash {
+	top: 3px;
+	left: 4px;
+}
+.gallery-modale figcaption {
+	margin-bottom: 10px;
+}
+.edit-line-modale {
+	border: 1px solid #B3B3B3;
+	width: 420px;
+	position: absolute;
+	top: 560px;
+}
+.btnAdd-photo {
+	background: #1D6154;
+	border-radius: 60px;
+	border: none;
+	color: #fff;
+	width: 235px;
+	padding: 10px 50px;
+	margin: 20px 0 0;
+	position: absolute;
+	top: 580px;
+	cursor: pointer;
+}
+.edit-delete {
+	color: red;
+	position: absolute;
+	top: 680px;
+	cursor: pointer;
+}
+/****************************/
 header {
 	display: flex;
 	justify-content: space-between;

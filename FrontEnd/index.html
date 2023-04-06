@@ -22,6 +22,20 @@
 			<button class="update">publier les changements</button>
 		</div>
 	</div>
+	<!-- Ajout de la modale -->
+	<div class="modale">
+		<!-- Modale Projets -->
+		<div class="modale-container">
+			<div class="icon-container">
+				<i class="fa-solid fa-xmark"></i>
+			</div>
+			<h2 class="title-modale">Galerie photo</h2>
+			<div class="gallery-modale"></div>
+			<div class="edit-line-modale"></div>
+			<button class="btnAdd-photo">Ajouter une photo</button>
+			<p class="edit-delete">Supprimer la galerie</p>
+		</div>
+	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 		<nav>
@@ -58,7 +72,7 @@
 				<h2 class="title-portfolio">Mes Projets</h2>
 				<div class="content-portfolio admin">
 					<i class="fa-regular fa-lg fa-pen-to-square icon-gallery"></i>
-					<span class="text-portfolio">Modifier</span>
+					<span class="text-portfolio open-modale">Modifier</span>
 				</div>
 			</div>
 			<div class="categories"></div>
@@ -87,5 +101,6 @@
 		</nav>
 	</footer>
 	<script src="./index.js"></script>
+	<script src="./admin.js"></script>
 </body>
 </html>

@@ -100,14 +100,12 @@ if (token) {
     contentIntro.style.display = 'flex';
     contentProfil.style.display = 'flex';
     contentPortfolio.style.display = 'block';
-    // categories.style.visibility = 'hidden';
     categories.style.display = 'none';
     headerPortfolio.style.marginBottom = '30px';
 
 }
 
 if(!token) {
-
     // Elements du DOM à faire apparaitre au login/retirer du DOM au logout
     const banner = document.querySelector('.banner');
     const contentProfil = document.querySelector('.content-profil');
