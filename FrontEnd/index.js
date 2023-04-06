@@ -70,7 +70,6 @@ const allCategories = async () => fetch('http://localhost:5678/api/categories')
 
 allCategories();
 
-
 // Event sur les boutons changer le style
 categories.addEventListener('click', (e) => {
     const btns = document.querySelectorAll('.btn');
@@ -82,4 +81,51 @@ categories.addEventListener('click', (e) => {
     e.target.style.color = '#fff';
 });
 
+// On vérifie si l'admin est connecté, qui affichera le bouton de déconnexion
+const login = document.querySelector('.login');
+const token = localStorage.getItem('token');
 
+if (token) {
+    login.innerHTML = '<a href="index.html">logout</a>';
+
+    // Elements du DOM à faire apparaitre au login/retirer du DOM au login
+    const banner = document.querySelector('.banner');
+    const contentProfil = document.querySelector('.content-profil');
+    const contentIntro = document.querySelector('.content-intro');
+    const contentPortfolio = document.querySelector('.content-portfolio');
+    const headerPortfolio = document.querySelector('.header-portfolio');
+    const categories = document.querySelector('.categories');
+
+    banner.style.display = 'block';
+    contentIntro.style.display = 'flex';
+    contentProfil.style.display = 'flex';
+    contentPortfolio.style.display = 'block';
+    // categories.style.visibility = 'hidden';
+    categories.style.display = 'none';
+    headerPortfolio.style.marginBottom = '30px';
+
+}
+
+if(!token) {
+
+    // Elements du DOM à faire apparaitre au login/retirer du DOM au logout
+    const banner = document.querySelector('.banner');
+    const contentProfil = document.querySelector('.content-profil');
+    const contentIntro = document.querySelector('.content-intro');
+    const contentPortfolio = document.querySelector('.content-portfolio');
+    const categories = document.querySelector('.categories');
+
+    banner.style.display = 'none';
+    contentIntro.style.display = 'none';
+    contentProfil.style.display = 'none';
+    contentPortfolio.style.display = 'none';
+    categories.style.visibility = 'visible';
+}
+
+// Event pour se déconnecter
+login.addEventListener('click', () => {
+    // on supprime le token du localStorage
+    if(token) {
+        localStorage.removeItem('token');
+    }   
+});
