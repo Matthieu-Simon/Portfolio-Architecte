@@ -96,28 +96,38 @@ if (token) {
     const headerPortfolio = document.querySelector('.header-portfolio');
     const categories = document.querySelector('.categories');
 
-    banner.style.display = 'block';
-    contentIntro.style.display = 'flex';
-    contentProfil.style.display = 'flex';
-    contentPortfolio.style.display = 'block';
-    categories.style.display = 'none';
+    // Style des éléments à afficher ou non
+    const CLASS_FLEX = 'flex';
+    const CLASS_NONE = 'none';
+    const CLASS_BLOCK = 'block';
+
+    banner.style.display = CLASS_BLOCK;
+    contentIntro.style.display = CLASS_FLEX;
+    contentProfil.style.display = CLASS_FLEX;
+    contentPortfolio.style.display = CLASS_BLOCK;
+    categories.style.display = CLASS_NONE;
     headerPortfolio.style.marginBottom = '30px';
 
 }
 
 if(!token) {
     // Elements du DOM à faire apparaitre au login/retirer du DOM au logout
+    const btnAll = document.querySelector('.allCategories');
     const banner = document.querySelector('.banner');
     const contentProfil = document.querySelector('.content-profil');
     const contentIntro = document.querySelector('.content-intro');
     const contentPortfolio = document.querySelector('.content-portfolio');
     const categories = document.querySelector('.categories');
 
-    banner.style.display = 'none';
-    contentIntro.style.display = 'none';
-    contentProfil.style.display = 'none';
-    contentPortfolio.style.display = 'none';
+    // Style des éléments à afficher ou non
+    const CLASS_NONE = 'none';
+
+    banner.style.display = CLASS_NONE;
+    contentIntro.style.display = CLASS_NONE;
+    contentProfil.style.display = CLASS_NONE;
+    contentPortfolio.style.display = CLASS_NONE;
     categories.style.visibility = 'visible';
+    btnAll.style.display = CLASS_NONE;
 }
 
 // Event pour se déconnecter

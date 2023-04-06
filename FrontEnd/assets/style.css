@@ -122,7 +122,7 @@ body {
 	font-weight: 400;
 	font-size: 26px;
 	color: #000000;
-	margin: 20px 0 40px;
+	margin: 20px 0;
 }
 /** Gallery Modale **/
 .gallery-modale {
@@ -132,6 +132,7 @@ body {
 }
 .gallery-modale figure {
 	position: relative;
+	width: 100px;
 }
 .gallery-modale img {
 	width: 78px;
@@ -172,7 +173,7 @@ body {
 }
 .edit-line-modale {
 	border: 1px solid #B3B3B3;
-	width: 420px;
+	width: 75%;
 	position: absolute;
 	top: 560px;
 }

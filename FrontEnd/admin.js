@@ -7,46 +7,45 @@ const openModaleAddProject = document.querySelector('.modale-add');
 const closeModaleApp = document.querySelector('.close-modale-add');
 
 
-// Fonction qui va générer les éléments html pour chaque projet de la galerie
-const generateWorks = async () => {
-    const dataApi = await fetch('http://localhost:5678/api/works');
-    const works = await dataApi.json();
-    const galleryModale = document.querySelector('.gallery-modale');
-    galleryModale.innerHTML = '';
-    for (const work of works) {
-        // on crée les éléments html
-        let figure = document.createElement("figure");
-        galleryModale.appendChild(figure);
-        // on crée les images et ajoute les attributs 
-        let imgWorks = document.createElement("img");
-        imgWorks.src = work.imageUrl;
-        imgWorks.setAttribute("alt", work.title);
-        figure.appendChild(imgWorks);
-        // on crée la div qui contiendra l'icone de déplacement
-        let iconMove = document.createElement("div");
-        iconMove.classList.add("move");
-        figure.appendChild(iconMove);
-        //  on crée l'icone de déplacement
-        let iconArrow = document.createElement("i");
-        iconArrow.classList.add("fas", "fa-arrows-alt", "icon-arrow");
-        iconMove.appendChild(iconArrow);
-        // on crée la div qui contiendra l'icone de suppression
-        let iconDelete = document.createElement("div");
-        iconDelete.classList.add("delete");
-        iconDelete.setAttribute("data-id", work.id);
-        figure.appendChild(iconDelete);
-        // on crée l'icone de suppression
-        let iconTrash = document.createElement("i");
-        iconTrash.classList.add("fas", "fa-trash-alt", "icon-trash");
-        iconTrash.setAttribute("data-id", work.id);
-        iconDelete.appendChild(iconTrash);
-        
-        // on crée les titres des images
-        let figcaption = document.createElement("figcaption");
-        figcaption.innerHTML = "éditer";
-        figure.appendChild(figcaption);
-    };
-};
+// Fonction pour récupérer les projets et les afficher dans la modale
+const generateWorks = async () => fetch('http://localhost:5678/api/works')
+    .then(response => response.json())
+    .then(data => {
+        const galleryModale = document.querySelector('.gallery-modale');
+        galleryModale.innerHTML = '';
+        for (const work of data) {
+            let figure = document.createElement('figure');
+            galleryModale.appendChild(figure);
+
+            let imgWorks = document.createElement('img');
+            imgWorks.src = work.imageUrl;
+            imgWorks.setAttribute('alt', work.title);
+            figure.appendChild(imgWorks);
+
+            let iconMove = document.createElement('div');
+            iconMove.classList.add('move');
+            figure.appendChild(iconMove);
+
+            let iconArrow = document.createElement('i');
+            iconArrow.classList.add('fas', 'fa-arrows-alt', 'icon-arrow');
+            iconMove.appendChild(iconArrow);
+
+            let iconDelete = document.createElement('div');
+            iconDelete.classList.add('delete');
+            iconDelete.setAttribute('data-id', work.id);
+            figure.appendChild(iconDelete);
+
+            let iconTrash = document.createElement('i');
+            iconTrash.classList.add('fas', 'fa-trash-alt', 'icon-trash');
+            iconTrash.setAttribute('data-id', work.id);
+            iconDelete.appendChild(iconTrash);
+
+            let figcaption = document.createElement('figcaption');
+            figcaption.textContent = "éditer";
+            figure.appendChild(figcaption);
+        }
+        deleteProject();       
+    });
 
 generateWorks();
 
@@ -70,3 +69,31 @@ window.addEventListener('click', (e) => {
         modale.style.display = CLASS_NONE;
     }
 });
+
+// Suppression d'un projet
+const deleteProject = () => {
+    const iconTrash = document.querySelectorAll('.icon-trash');
+    iconTrash.forEach(icon => {
+        icon.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = e.target.getAttribute('data-id');
+            const token = localStorage.getItem('token');
+            fetch(`http://localhost:5678/api/works/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then(() => {
+                const galleryModale = document.querySelector('.gallery-modale');
+                galleryModale.innerHTML = '';
+            })
+            .catch((error) => {
+                console.error('Error Message:', error);
+            });
+        });
+    });
+};
+
+deleteProject();
