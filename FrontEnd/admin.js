@@ -24,6 +24,7 @@ const generateWorks = async () => fetch('http://localhost:5678/api/works')
 
             let iconMove = document.createElement('div');
             iconMove.classList.add('move');
+            iconMove.style.display = "none";
             figure.appendChild(iconMove);
 
             let iconArrow = document.createElement('i');
@@ -169,7 +170,6 @@ const displayImage = (e) => {
     inputAddPhoto.style.display = CLASS_NONE;
     textModaleAdd.style.display = CLASS_NONE;
     iconModaleAdd.style.display = CLASS_NONE;
-    // 
     imgAddPhoto.style.display = CLASS_FLEX;
     
 };
@@ -213,7 +213,6 @@ const addNewProject = async (e) => {
         // On cache la modale
         document.querySelector('modale-add').style.display = CLASS_NONE;
 
-        console.log(data);
     })
     .catch((error) => console.error('Error Message:', error));
 };
