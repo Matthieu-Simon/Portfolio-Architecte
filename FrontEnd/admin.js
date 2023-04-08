@@ -6,7 +6,6 @@ const modaleProjets = document.querySelector('.modale-container');
 const openModaleAddProject = document.querySelector('.modale-add');
 const closeModaleApp = document.querySelector('.close-modale-add');
 
-
 // Fonction pour récupérer les projets et les afficher dans la modale
 const generateWorks = async () => fetch('http://localhost:5678/api/works')
     .then(response => response.json())
@@ -79,7 +78,7 @@ btnAddPhoto.addEventListener('click', () => {
 
 closeModaleApp.addEventListener('click', () => {
     modale.style.display = CLASS_NONE;
-    openModaleAddProject.style.display = CLASS_NONE;
+    // openModaleAddProject.style.display = CLASS_NONE;
 });
 
 // Event sur l'icone pour revenir sur la modale "Galerie"
@@ -176,64 +175,66 @@ const displayImage = (e) => {
 // Event pour afficher l'image dans le formulaire
 inputFile.addEventListener('change', displayImage);
 
-// Fonction pour ajouter un nouveau projet
-const addNewProject = async (e) => {
+// Fonction si tous les champs sont remplis
+const validateForm = () => {
+    if (inputTitle.value && inputFile.value && inputCategory.value) {
+        btnSubmit.style.backgroundColor = '#1D6154';
+    } else {
+        btnSubmit.style.backgroundColor = '';
+    }
+};
+
+inputTitle.addEventListener('input', validateForm);
+inputCategory.addEventListener('input', validateForm);
+inputFile.addEventListener('input', validateForm);
+
+// Event pour ajouter un projet
+const btnSubmit = document.querySelector(".btnAdd-validate");
+btnSubmit.addEventListener('click', (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-    
     const formData = new FormData();
     formData.append('image', inputFile.files[0]);
     formData.append('title', inputTitle.value);
     formData.append('category', +inputCategory.value);
+    if (
+        formData.get('title') &&
+        formData.get('image') &&
+        formData.get('category')
+    ) {
+        fetch('http://localhost:5678/api/works', {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            const project = document.createElement("figure");
+            const image = document.createElement("img");
+            const title = document.createElement("figcaption");
 
-    await fetch('http://localhost:5678/api/works', {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-    })
-    .then((response) => response.json())
-    .then((data) => {
-        const project = document.createElement("figure");
-        const image = document.createElement("img");
-        const title = document.createElement("figcaption");
+            const newProject = data.id;
+            image.src = data.imageUrl;
+            title.textContent = data.title;
 
-        const newProject = data.id;
-        image.src = data.imageUrl;
-        title.textContent = data.title;
+            project.appendChild(image);
+            project.appendChild(title);
+            project.setAttribute('data-id', newProject);
 
-        project.appendChild(image);
-        project.appendChild(title);
+            const gallery = document.querySelector('.gallery');
+            gallery.appendChild(project);
 
-        project.setAttribute('data-id', newProject);
-        const gallery = document.querySelector('.gallery');
-        gallery.appendChild(project);
-
-        // On cache la modale
-        document.querySelector('modale-add').style.display = CLASS_NONE;
-
-    })
-    .catch((error) => console.error('Error Message:', error));
-};
-
-const formAddProject = document.querySelector('.form');
-// Condition si les champs sont remplis
-const updateBtnSubmit = () => {
-    const btnSubmit = document.querySelector('.btnAdd-validate');
-    if (inputTitle.value && inputCategory.value && inputFile.value) {
-        btnSubmit.style.backgroundColor = '#1D6154';
+        })
+        .catch((error) => console.error('Error Message:', error));
     } else {
-        btnSubmit.style.backgroundColor = '#A7A7A7';
-        formAddProject.addEventListener('submit', (e) => {
-            e.preventDefault();
-        });
+        // alert('Veuillez remplir tous les champs');
+        const error = document.querySelector('.error_message');
+        error.textContent = 'Veuillez remplir tous les champs';
     }
-};
+});
 
-inputTitle.addEventListener('input', updateBtnSubmit);
-inputCategory.addEventListener('input', updateBtnSubmit);
-inputFile.addEventListener('input', updateBtnSubmit);
 
-// Event pour ajouter un projet
-formAddProject.addEventListener('submit', addNewProject);
+
+
