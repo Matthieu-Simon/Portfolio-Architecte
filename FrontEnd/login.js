@@ -22,16 +22,14 @@ const userLogin = () => {
     const error = document.querySelector('.error_message');
     
     if (email === '' && password === '') {
-        error.innerHTML = 'Veuillez remplir tous les champs';
-    } else if (email !== emailValidate && password !== passwordValidate) {
-        error.innerHTML = 'Email et mot de passe incorrects';
+        error.textContent = "Veuillez saisir tous les champs !"
     } else if (email !== emailValidate) {
-        error.innerHTML = 'Email incorrect';
+        error.textContent = "Email incorrect"
     } else if (password !== passwordValidate) {
-        error.innerHTML = 'Mot de passe incorrect';
+        error.textContent = "Mot de passe incorrect"
     } else {
-        error.innerHTML = '';
-    };
+        error.textContent = '';
+    }
     
     // on envoie les données à l'API
     fetch('http://localhost:5678/api/users/login', {
