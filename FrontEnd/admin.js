@@ -53,6 +53,8 @@ generateWorks();
 const CLASS_FLEX = 'flex';
 const CLASS_NONE = 'none';
 
+const form = document.querySelector('.container-add-photo');
+
 // Event pour afficher la modale au clic sur le bouton "modifier"
 openModale.addEventListener('click', () => {
     modale.style.display = CLASS_FLEX;
@@ -68,6 +70,7 @@ window.addEventListener('click', (e) => {
     if (e.target === modale) {
         modale.style.display = CLASS_NONE;
     }
+    clearForm();
 });
 
 // Event pour afficher une seconde modale pour éditer un nouveau projet
@@ -78,7 +81,7 @@ btnAddPhoto.addEventListener('click', () => {
 
 closeModaleApp.addEventListener('click', () => {
     modale.style.display = CLASS_NONE;
-    // openModaleAddProject.style.display = CLASS_NONE;
+    clearForm();
 });
 
 // Event sur l'icone pour revenir sur la modale "Galerie"
@@ -86,6 +89,7 @@ const arrowBack = document.querySelector('.fa-arrow-left');
 arrowBack.addEventListener('click', () => {
     document.querySelector('.modale-container').style.display = CLASS_FLEX;
     openModaleAddProject.style.display = CLASS_NONE;
+    clearForm();
 });
 
 // Event pour masquer l'icone de déplacement sur les images
@@ -146,15 +150,19 @@ fetch('http://localhost:5678/api/categories')
     })
     .catch((error) => console.error('Error Message:', error));
 
-
 // Fonction pour afficher l'image dans le formulaire
 const inputFile = document.querySelector('.inputAdd-photo');
-const imgAddPhoto = document.querySelector('.img-add');
 const inputAddPhoto = document.querySelector('.input-file-container');
 const textModaleAdd = document.querySelector('.text-modale-add');
 const iconModaleAdd = document.querySelector('.icon-modale-add');
 const inputTitle = document.querySelector('.inputTitle-add');
 const inputCategory = document.querySelector('.select-category');
+
+const createImgAdd = document.createElement('img');
+createImgAdd.classList.add('img-add');
+form.appendChild(createImgAdd);
+
+const imgAddPhoto = document.querySelector('.img-add');
 
 const displayImage = (e) => {
     if (e.target.files[0]) {
@@ -183,6 +191,7 @@ const validateForm = () => {
         btnSubmit.style.backgroundColor = '';
     }
 };
+
 
 inputTitle.addEventListener('input', validateForm);
 inputCategory.addEventListener('input', validateForm);
@@ -236,6 +245,13 @@ btnSubmit.addEventListener('click', (e) => {
     }
 });
 
-
-
-
+// Fonction pour vider le formulaire si on quitte la modale sans ajouter de projet
+const clearForm = () => {
+    inputTitle.value = '';
+    inputCategory.value = '';
+    inputFile.value = '';
+    imgAddPhoto.style.display = CLASS_NONE;
+    inputAddPhoto.style.display = "inline";
+    textModaleAdd.style.display = CLASS_FLEX;
+    iconModaleAdd.style.display = CLASS_FLEX;
+};
