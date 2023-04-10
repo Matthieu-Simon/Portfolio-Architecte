@@ -69,8 +69,8 @@ closeModale.addEventListener('click', () => {
 window.addEventListener('click', (e) => {
     if (e.target === modale) {
         modale.style.display = CLASS_NONE;
+        clearForm();
     }
-    clearForm();
 });
 
 // Event pour afficher une seconde modale pour éditer un nouveau projet
@@ -161,6 +161,9 @@ const inputCategory = document.querySelector('.select-category');
 const createImgAdd = document.createElement('img');
 createImgAdd.classList.add('img-add');
 form.appendChild(createImgAdd);
+
+const createOption = document.createElement('option');
+inputCategory.appendChild(createOption);
 
 const imgAddPhoto = document.querySelector('.img-add');
 
