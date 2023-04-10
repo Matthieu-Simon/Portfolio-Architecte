@@ -24,9 +24,9 @@ const userLogin = () => {
     if (email === '' && password === '') {
         error.textContent = "Veuillez saisir tous les champs !"
     } else if (email !== emailValidate) {
-        error.textContent = "Email incorrect"
+        error.textContent = "Email incorrect ou non saisie"
     } else if (password !== passwordValidate) {
-        error.textContent = "Mot de passe incorrect"
+        error.textContent = "Mot de passe incorrect ou non saisie"
     } else {
         error.textContent = '';
     }

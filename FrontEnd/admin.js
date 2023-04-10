@@ -217,6 +217,7 @@ btnSubmit.addEventListener('click', (e) => {
 
             const newProject = data.id;
             image.src = data.imageUrl;
+            image.setAttribute = data.title;
             title.textContent = data.title;
 
             project.appendChild(image);

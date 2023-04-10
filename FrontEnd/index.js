@@ -95,6 +95,7 @@ if (token) {
     const contentPortfolio = document.querySelector('.content-portfolio');
     const headerPortfolio = document.querySelector('.header-portfolio');
     const categories = document.querySelector('.categories');
+    const btnAll = document.querySelector('.btnAll');
 
     // Style des éléments à afficher ou non
     const CLASS_FLEX = 'flex';
@@ -106,6 +107,7 @@ if (token) {
     contentProfil.style.display = CLASS_FLEX;
     contentPortfolio.style.display = CLASS_BLOCK;
     categories.style.display = CLASS_NONE;
+    // btnAll.style.display = CLASS_NONE;
     headerPortfolio.style.marginBottom = '30px';
 
 }
