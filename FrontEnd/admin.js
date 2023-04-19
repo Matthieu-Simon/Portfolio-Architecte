@@ -125,6 +125,7 @@ const deleteProject = () => {
             .then(() => {
                 const galleryModale = document.querySelector('.gallery-modale');
                 galleryModale.innerHTML = '';
+                generateWorks();
             })
             .catch((error) => {
                 console.error('Error Message:', error);
@@ -238,7 +239,7 @@ btnSubmit.addEventListener('click', (e) => {
 
             const gallery = document.querySelector('.gallery');
             gallery.appendChild(project);
-
+            generateWorks();
         })
         .catch((error) => console.error('Error Message:', error));
     } else {
